@@ -7,3 +7,4 @@ Assignment Solutions For Python-beginner-Advanced-Expert course conducted by Hop
 ![](https://img.shields.io/badge/Python-course-red)
 ![](https://img.shields.io/badge/level-Advanced-red)
 ![](https://img.shields.io/badge/Data%20Analysis-course-red)
+![](https://img.shields.io/badge/SQL-Advanced-yellow)
