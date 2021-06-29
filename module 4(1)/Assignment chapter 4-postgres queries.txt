@@ -1,0 +1,98 @@
+﻿
+*/Create Data base with name 'employee_management' for default user postgres*/
+
+CREATE DATABASE employee_management OWNER postgres;
+
+*/Create first Table Employee with curresponding columns*/
+
+CREATE TABLE Employee (
+	Employee_id serial PRIMARY KEY,
+	Name varchar (50) NOT NULL,
+	Salary INTEGER,
+	Department_id integer NOT NULL,
+	DoB date,
+
+	);
+	
+*/Create first Table Department with curresponding columns*/
+
+CREATE TABLE Department (
+	Department_id serial PRIMARY KEY,
+	Department_Name varchar (50) NOT NULL,
+	Id_Hod INTEGER,
+	CONSTRAINT Emp_Hod
+      FOREIGN KEY(Id_Hod) 
+	  REFERENCES Employee(Employee_id) ON DELETE SET NULL  NOT VALID
+	);
+	
+	
+*/Create 5 entries to each table*/
+
+INSERT INTO Employee (Employee_id, Name, Salary, Department_id, DoB) VALUES
+    (1, 'Don', 30000,1,'1997-04-30'),
+    (2, 'Srk', 35000,2,'1996-05-10'),
+    (3, 'Raj', 60000,1,'1992-04-30'),
+	(4, 'Don2', 30000,3,'1997-07-15'),
+	(5, 'Rahul', 35000,2,'1998-08-03');
+
+
+INSERT INTO Department (Department_id, Department_Name, Id_Hod) VALUES
+    (1, 'ECE', 2),
+    (2, 'MECH',3),
+    (3, 'EEE',4),
+	(4, 'CS', 1);
+
+
+###############################################################
+
+*/Problem 1 : Apply constraints on the table such that we cannot 
+make an entry to the department table with an employee id that 
+doesn’t exist in the Employee table*/
+
+*/Answer:This is already solved by using Forienkey*/
+
+###############################################################
+
+*/Problem 2 :  Write a query to get average salary of employees grouped
+ by their department and show along with department name*/
+
+*/Answer:*/
+
+SELECT Department_Name, AVG(salary)
+	FROM Department,Employee
+GROUP BY Department_Name;
+
+###############################################################
+
+*/Problem 3 :   Write a query to get the list of HODs 
+whose salary is greater than average salary of HODs*/
+
+*/Answer:*/
+
+SELECT Id_Hod FROM Department,employee
+WHERE salary > (SELECT AVG(salary) FROM Employee);
+
+###############################################################
+
+*/Problem 4 :  Write a query to get the names of youngest and oldest HOD along with their age*/
+
+
+*/Answer:*/
+
+SELECT date_part('year', AGE(DoB)) as "age", * FROM Employee ORDER BY DoB DESC;
+
+###############################################################
+
+*/Problem 5 :   Write a query to get the list of departments where HODs earn at least twice the average salary of the other employees in that department*/
+
+*/Answer:*/
+
+SELECT Department_id,
+       avg(salary)
+FROM employee
+GROUP BY Department_id
+HAVING avg(salary) >
+  2*(SELECT avg(salary)
+   FROM Employee);
+
+###############################################################
