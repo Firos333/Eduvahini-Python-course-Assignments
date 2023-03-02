@@ -2,7 +2,7 @@
 
 
 Description:  <br />
-Assignment Solutions For Python-beginner-Advanced-Expert course conducted by Hope Foundation ([Eduvahini](https://eduvahini.com/)) in Association with Microsoft
+Assignment Solutions For Python-beginner-Advanced-Expert course conducted by Hope Foundation in association with Microsoft ([Eduvahini](https://eduvahini.com/)) in Association with Microsoft
 
 ![](https://img.shields.io/badge/Python-course-red)
 ![](https://img.shields.io/badge/level-Advanced-red)
